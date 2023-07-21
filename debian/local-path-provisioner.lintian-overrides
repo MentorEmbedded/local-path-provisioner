@@ -1,0 +1,4 @@
+local-path-provisioner: statically-linked-binary usr/bin/local-path-provisioner
+# manual pages are not required for these non-interactive applications and none
+# are provided by rancher
+local-path-provisioner: no-manual-page usr/bin/local-path-provisioner

@@ -1,0 +1,20 @@
+Source: local-path-provisioner
+Section: admin
+Priority: optional
+Maintainer: Mentor Embedded <embedded_support@mentor.com>
+Build-Depends: debhelper (>= 11), chrpath, cpio, curl, diffstat, docker.io | docker-ce, gawk, libseccomp-dev, lz4, pkg-config, wget, zstd, git
+Standards-Version: 4.5.1
+Homepage: https://github.com/rancher/local-path-provisioner
+Rules-Requires-Root: no
+
+Package: local-path-provisioner
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libc6 (>= 2.31)
+Description: Local Path Provisioner Support Binary
+ Local Path Provisioner provides a way for the Kubernetes users to utilize
+ the local storage in each node. Based on the user configuration, the
+ Local Path Provisioner will create either hostPath or local based
+ persistent volume on the node automatically. It utilizes the features
+ introduced by Kubernetes Local Persistent Volume feature, but makes it a
+ simpler solution than the built-in local volume feature in Kubernetes.
+

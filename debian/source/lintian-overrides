@@ -1,0 +1,20 @@
+# dapper is a build environment used by local-path-provisioner. It isn't
+# necessary to build the source but the makefile provided by the project assumes
+# it will be used and will download it as part of the preparation step
+source-is-missing .dapper
+# this is the output of the full build process, lintian is unable to determine
+# this correctly
+source-is-missing dist/artifacts/local-path-provisioner
+# the k3s package intentionally provides only a statically linked binary
+package-depends-on-hardcoded-libc local-path-provisioner Depends
+# k3s has no Debian maintainer, this is a vendor packaging
+no-nmu-in-changelog
+# we are using the git source format
+unsupported-source-format
+# upstream sources aren't part of the git source format
+empty-upstream-sources
+# this is the correct format for our versioning
+malformed-debian-changelog-version 0.0.24+mel1 (for non-native)
+missing-notice-file-for-apache-license vendor/github.com/prometheus/client_golang/NOTICE vendor/gopkg.in/yaml.v2/NOTICE vendor/gopkg.in/yaml.v3/NOTICE
+# this is intentional
+debian-adds-git-control-dir .git/

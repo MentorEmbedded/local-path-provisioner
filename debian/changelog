@@ -1,0 +1,6 @@
+local-path-provisioner (0.0.24+mel1) UNRELEASED; urgency=medium
+
+  * local package.
+  * package local-path-provisioner for Sokol Linux
+
+ -- Joe MacDonald <joe@deserted.net>  Fri, 21 Jul 2023 10:38:29 -0400

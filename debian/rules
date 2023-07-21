@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+
+# output every command that modifies files on the build system.
+# export DH_VERBOSE = 1
+# make debhelper commands more verbose
+# export DH_OPTIONS = -v
+export USE_DAPPER ?= 0
+# set HOME since go requires GOCACHE be set and the default ($HOME/.go-cache)
+# will cause a build failure with sbuild.  Setting $HOME to $(CURDIR) is a
+# default solution to this problem for some packages:
+# 	https://lists.debian.org/debian-mentors/2018/08/msg00003.html
+export HOME = $(CURDIR)
+
+%:
+	dh $@
+
+ifeq ($(strip $(USE_DAPPER)),1)
+# Dapper builds require this, regular builds don't
+override_dh_auto_configure:
+	mkdir -p build/data
+	make download
+	make generate
+endif
+
+override_dh_auto_test:
+	@echo Skipping tests
+
+override_dh_auto_install:
+	mkdir -p debian/local-path-provisioner/usr/bin/
+	install -m 0755 bin/local-path-provisioner debian/local-path-provisioner/usr/bin/ 
